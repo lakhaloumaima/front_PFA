@@ -1,0 +1,27 @@
+<!-- meeting.component.html -->
+<div>
+  <!-- Display existing meetings -->
+  <h2>Meetings</h2>
+
+  <div class="alert alert-success" role="alert">
+    
+  </div>
+
+  <ul *ngFor="let meeting of meetings">
+    <li>{{ meeting.title }}</li>
+    <li>{{ meeting.created_at }}</li>
+  </ul>
+
+
+  <!-- Create new meeting form -->
+  <h2>Create Meeting</h2>
+
+  <form (ngSubmit)="createMeeting()">
+    <label for="meetingName">Meeting Name:</label>
+    <input type="text" id="meetingName" name="meetingName"
+      [(ngModel)]="newMeetingName" required>
+    <button type="submit">Create</button>
+  </form>
+
+
+</div>
