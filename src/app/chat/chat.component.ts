@@ -13,10 +13,13 @@ export class ChatComponent implements OnInit {
   messages: any[] = [];
   newmessage: string = "";
   private cable: any;
+  current_user: any;
 
   constructor(private chatService: ChatService, private socket: Socket) { }
 
   ngOnInit(): void {
+
+    this.current_user = JSON.parse( sessionStorage.getItem('user') !) ;
 
     this.chatService.getMessages().subscribe(
       (messages: any[]) => {
@@ -30,9 +33,9 @@ export class ChatComponent implements OnInit {
     );
 
     // Subscribe to incoming messages from the WebSocket server
-    this.socket.fromEvent('message').subscribe((message: any) => {
-      this.messages.push(message);
-    });
+    // this.socket.fromEvent('message').subscribe((message: any) => {
+    //   this.messages.push(message);
+    // });
 
     // Connect to Action Cable when the component initializes
     this.cable = createConsumer('ws://localhost:3000/cable');
@@ -40,7 +43,7 @@ export class ChatComponent implements OnInit {
       received: (data: any) => {
         console.log('Message received from server:', data);
         // Add the new message to the messages array
-        debugger
+        // debugger
         this.messages.push(data.message);
       }
     });
@@ -48,7 +51,8 @@ export class ChatComponent implements OnInit {
 
   createMessage(): void {
     if (this.newmessage.trim() !== '') {
-      this.chatService.createMessage({ message: this.newmessage }).subscribe(
+
+      this.chatService.createMessage({ message: this.newmessage  }).subscribe(
         (response) => {
           // Emit the message to the WebSocket server
           // this.socket.emit('message', this.newmessage);

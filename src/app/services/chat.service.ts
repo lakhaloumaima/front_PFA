@@ -16,13 +16,13 @@ export class ChatService {
     return this.http.post<any>('http://localhost:3000/messages', message );
   }
 
-  sendMessage(message: string) {
-    this.socket.emit('message', message);
-  }
+  // sendMessage(message: string) {
+  //   this.socket.emit('message', message);
+  // }
 
-  receiveMessage() {
-    return this.socket.fromEvent('message');
-  }
+  // receiveMessage() {
+  //   return this.socket.fromEvent('message');
+  // }
 
   connectToActionCable() {
     this.cable = createConsumer('ws://localhost:3000/cable');

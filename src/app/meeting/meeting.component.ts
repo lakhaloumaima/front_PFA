@@ -33,9 +33,9 @@ export class MeetingComponent implements OnInit {
     );
 
     // Subscribe to incoming meetings from the WebSocket server
-    this.socket.fromEvent('message').subscribe((message: any) => {
-      this.meetings.push(message);
-    });
+    // this.socket.fromEvent('message').subscribe((message: any) => {
+    //   this.meetings.push(message);
+    // });
 
     // Connect to Action Cable when the component initializes
     this.cable = createConsumer('ws://localhost:3000/cable');
@@ -43,7 +43,7 @@ export class MeetingComponent implements OnInit {
       received: (data: any) => {
         console.log('Message received from server:', data);
         // Add the new message to the meetings array
-        debugger
+        // debugger
         this.meetings.push(data.meeting);
       }
     });

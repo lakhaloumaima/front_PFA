@@ -13,13 +13,13 @@ export class MeetingsService {
 
   constructor(private socket: Socket, private http: HttpClient ) {}
 
-  sendMessage(message: string) {
-    this.socket.emit('message', message);
-  }
+  // sendMessage(message: string) {
+  //   this.socket.emit('message', message);
+  // }
 
-  receiveMessage() {
-    return this.socket.fromEvent('message');
-  }
+  // receiveMessage() {
+  //   return this.socket.fromEvent('message');
+  // }
 
   getMeetings() {
     return this.http.get<any[]>('http://localhost:3000/meetings');

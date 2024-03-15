@@ -11,7 +11,8 @@ import { MeetingsService } from './services/meetings.service';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { environment } from '../environments/environment';
-import { ChatComponent } from './chat/chat.component'; // Assuming environment.ts is available
+import { ChatComponent } from './chat/chat.component';
+import { LoginComponent } from './login/login.component'; // Assuming environment.ts is available
 const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
 
 @NgModule({
@@ -20,6 +21,7 @@ const config: SocketIoConfig = { url: environment.socketUrl, options: {} };
     HomeComponent,
     MeetingComponent,
     ChatComponent,
+    LoginComponent,
 
   ],
   imports: [
